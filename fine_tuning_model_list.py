@@ -10,9 +10,7 @@ client = OpenAI(
 )
 
 
-# 列出所有微调任务
 jobs = client.fine_tuning.jobs.list()
-# 获取每个微调任务的fine_tuned_model名称
 for job in jobs:
     fine_tuned_model_id = job.fine_tuned_model
     training_file_id=job.training_file
