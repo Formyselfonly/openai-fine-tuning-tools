@@ -15,7 +15,6 @@ file=client.files.create(
 
 fine_tuning_job=client.fine_tuning.jobs.create(
     training_file=file.id,
-    # model是微调基于的原始模型
     model="gpt-3.5-turbo-1106"
 )
 job_id=fine_tuning_job.id
