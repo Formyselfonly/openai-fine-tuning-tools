@@ -62,9 +62,19 @@ input = st.chat_input("快输入点消息")
 jobs_info = finetest.list_fine_tuning_jobs()
 selectmodel = st.sidebar.selectbox("选择一个模型",jobs_info)
 
-uploaded_audio = st.sidebar.file_uploader("Upload files", type=['jsonl'])
-if st.sidebar.button("微调启动"):
-    finetest.fine_tune_model(file_path=jsonpath)
+uploaded_file = st.sidebar.file_uploader("Upload files", type=['jsonl'])
+if uploaded_file is not None:
+    # 保存上传的文件
+    save_user_path = os.path.join(path, uploaded_file.name)
+    with open(save_user_path, 'wb') as f:
+        f.write(uploaded_file.getvalue())  
+        st.success(f'上传文件{save_user_path}保存成功')  # 可选：在 Streamlit 应用中显示成功消息
+        
+if st.sidebar.button("微调启动") and (jsonpath or uploaded_file):
+    if jsonpath:
+        finetest.fine_tune_model(file_path=jsonpath)
+    elif uploaded_file:
+        finetest.fine_tune_model(file_path=uploaded_file)
 
 st.info(selectmodel)
 if input and selectmodel is not None:
