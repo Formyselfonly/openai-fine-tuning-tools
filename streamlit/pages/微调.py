@@ -71,10 +71,10 @@ if uploaded_file is not None:
         st.success(f'上传文件{save_user_path}保存成功')  # 可选：在 Streamlit 应用中显示成功消息
         
 if st.sidebar.button("微调启动") and (jsonpath or uploaded_file):
-    if jsonpath:
-        finetest.fine_tune_model(file_path=jsonpath)
-    elif uploaded_file:
+    if uploaded_file:
         finetest.fine_tune_model(file_path=uploaded_file)
+    elif jsonpath:
+        finetest.fine_tune_model(file_path=jsonpath)
 
 st.info(selectmodel)
 if input and selectmodel is not None:
