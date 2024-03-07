@@ -80,27 +80,17 @@ class fine_utils_API():
             return None
 
     def list_fine_tuning_jobs(self):
-        jobs_info = []  # 初始化一个空列表来存储作业信息
+        model_names = []  # 初始化一个空列表来存储模型名称
         try:
             # 获取所有微调作业
             jobs = self.client.fine_tuning.jobs.list()
 
-            # 遍历作业并收集相关信息
+            # 遍历作业并收集模型名称
             for job in jobs:
                 fine_tuned_model_id = job.fine_tuned_model
-                training_file_id = job.training_file
-                training_file = self.client.files.retrieve(training_file_id)
-                training_create_time = training_file.created_at
-                training_create_time = datetime.datetime.fromtimestamp(training_create_time).strftime('%Y-%m-%d %H:%M:%S')
-                training_file_json_name = training_file.filename
-
-                # 创建一个字典来存储作业信息
-                job_info = {
-                    "fine_tuned_model_name": fine_tuned_model_id,
-                    "training_file": training_file_json_name,
-                    "training_create_time": training_create_time
-                }
-                jobs_info.append(job_info)  # 将字典添加到列表中
+                # 检查模型名称是否存在，如果存在则添加到列表
+                if fine_tuned_model_id:
+                    model_names.append(fine_tuned_model_id)
 
         except Exception as e:
             print(f"An error occurred: {e}")
@@ -108,4 +98,4 @@ class fine_utils_API():
             return []
 
         # 返回收集到的所有作业信息
-        return jobs_info
+        return model_names

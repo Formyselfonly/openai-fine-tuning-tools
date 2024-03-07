@@ -60,11 +60,8 @@ jsonpath = select_file_from_folder(folder_path =path )
 input = st.chat_input("快输入点消息")
 
 jobs_info = finetest.list_fine_tuning_jobs()
-selectmodels = st.sidebar.selectbox("选择一个模型",jobs_info)
-if selectmodels:
-    selectmodel = selectmodels["fine_tuned_model_name"]
-else:
-    selectmodel = None
+selectmodel = st.sidebar.selectbox("选择一个模型",jobs_info)
+
     
 if st.button("微调启动"):
     finetest.fine_tune_model(file_path=jsonpath)
