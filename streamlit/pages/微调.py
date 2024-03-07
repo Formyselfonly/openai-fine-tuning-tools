@@ -62,8 +62,8 @@ input = st.chat_input("快输入点消息")
 jobs_info = finetest.list_fine_tuning_jobs()
 selectmodel = st.sidebar.selectbox("选择一个模型",jobs_info)
 
-    
-if st.button("微调启动"):
+uploaded_audio = st.sidebar.file_uploader("Upload files", type=['jsonl'])
+if st.sidebar.button("微调启动"):
     finetest.fine_tune_model(file_path=jsonpath)
 
 st.info(selectmodel)
