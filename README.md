@@ -1,30 +1,20 @@
 # openai-fine-tuning-tools
-openai fine-tuning all you need! 
+基于streamlit 的gpt微调界面
 
 ## How to use
-All u need to do is type your OPENAI_API_KEY and just run!
-### Step1
-You can change the mydata.jsonl to your own data and than run fine_tuning_get_model.py to fine-tuning your model.(fine-tuning will take about 5 to 30 minutes)
-### Step2
-Run fine_tuning_model_list.py to see the state of all your fine-tuned model
-### Step3
-Run fine_tuning_model_use.py, change the model name to your fine-tuned model name to run!
-## Showing
-### fine-tuning model
-![image](https://github.com/Formyselfonly/openai-fine-tuning-tools/assets/56914169/d26a4896-66d4-4114-bf54-c06d1b2273fb)
+### step1 
+将需要微调的文件保存到openai-fine-tuning-tools/streamlit/src下
+### step2
+进入 streamlit 运行命令 
+```
+streamlit run main.py
+```
+### step3
 
-![image](https://github.com/Formyselfonly/openai-fine-tuning-tools/assets/56914169/ecea6564-c0d3-4c8b-b374-4c621e8979c0)
+可以上传文件，或者选择一个已经有的文件进行微调
 
-
-
-
-
-### model list and management
-![image](https://github.com/Formyselfonly/openai-fine-tuning-tools/assets/56914169/e0b57b54-bcf8-47c9-a1a1-d326b54ae1fd)
-
-![image](https://github.com/Formyselfonly/openai-fine-tuning-tools/assets/56914169/99775882-3042-4f60-8038-e895ee7ff4b4)
-
-
+### step4
+训练结束后会有一个模型id，选择该模型id，可以在右侧聊天进行测试
 
 
 
